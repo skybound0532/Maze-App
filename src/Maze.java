@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Maze
 {
     private Square[][] maze;
+    private int numRows;
+    private int numCols;
     
     public Maze()
     {
@@ -17,8 +19,8 @@ public class Maze
         
         try (Scanner in = new Scanner(new File(fileName)))
         {
-            int numRows = in.nextInt();
-            int numCols = in.nextInt();
+            this.numRows = in.nextInt();
+            this.numCols = in.nextInt();
 
             in.nextLine();
 
@@ -66,7 +68,15 @@ public class Maze
         }
         if(row < maze.length - 1)
         {
-
+            results.add(maze[row + 1][col]);
+        }
+        if(col > 0)
+        {
+            results.add(maze[row][col - 1]);
+        }
+        if(col < maze[0].length - 1)
+        {
+            results.add(maze[row][col + 1]);
         }
 
         return results;
@@ -74,21 +84,65 @@ public class Maze
 
     public Square getStart()
     {
-        return null;
+        Square start = null;
+
+        for(int row = 0; row < numRows; row++)
+        {
+            for(int col = 0; col < numCols; col++)
+            {
+                if(maze[row][col].getType() == 2);
+                {
+                    start = maze[row][col];
+                }
+            }
+        }
+        
+        return start;
     }
 
     public Square getEnd()
     {
-        return null;
+        Square end = null;
+
+        for(int row = 0; row < numRows; row++)
+        {
+            for(int col = 0; col < numCols; col++)
+            {
+                if(maze[row][col].getType() == 3);
+                {
+                    end = maze[row][col];
+                }
+            }
+        }
+        
+        return end;
     }
 
     public void reset()
     {
-
+        for(int row = 0; row < numRows; row++)
+        {
+            for(int col = 0; col < numCols; col++)
+            {
+                maze[row][col].reset();
+            }
+        }
     }
 
     public String toString()
     {
-        return null;
+        String result = null;
+        
+        for(int row = 0; row < numRows; row++)
+        {
+            for(int col = 0; col < numCols; col++)
+            {
+                result += (maze[row][col] + " ");
+            }
+
+            result += "\n";
+        }
+
+        return result;
     }
 }

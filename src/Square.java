@@ -13,13 +13,17 @@ public class Square
 
     public String toString()
     {
-        if(type==0) return "_";
-        if(type==1) return "#";
-        if(type==2) return "S";
-        if(type==3) return "E";
-        if(type==4) return "o";
-        if(type==5) return ".";
-        return "x";
+        switch(type)
+        {
+            case 0: return "_";
+            case 1: return "#";
+            case 2: return "S";
+            case 3: return "E";
+            case 4: return "o";
+            case 5: return ".";
+            default:
+                return "x";
+        }
     }
 
     public int getRow()
@@ -35,5 +39,13 @@ public class Square
     public int getType()
     {
         return type;
+    }
+
+    public void reset()
+    {
+        if(this.type > 3)
+        {
+            type = 0;
+        }
     }
 }
