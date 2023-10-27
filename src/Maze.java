@@ -62,7 +62,33 @@ public class Maze
 
         if(row > 0)
         {
-            ArrayList.add(maze[row - 1][col]);
+            results.add(maze[row - 1][col]);
         }
+        if(row < maze.length - 1)
+        {
+
+        }
+
+        return results;
+    }
+
+    public Square getStart()
+    {
+        return null;
+    }
+
+    public Square getEnd()
+    {
+        return null;
+    }
+
+    public void reset()
+    {
+
+    }
+
+    public String toString()
+    {
+        return null;
     }
 }
