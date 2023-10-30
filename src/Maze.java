@@ -131,18 +131,22 @@ public class Maze
 
     public String toString()
     {
-        String result = null;
+        // String result = null;
+        
+        StringBuilder result = new StringBuilder();
         
         for(int row = 0; row < numRows; row++)
         {
             for(int col = 0; col < numCols; col++)
             {
-                result += (maze[row][col] + " ");
+                result.append(maze[row][col] + " ");
             }
 
-            result += "\n";
+            result.append("\n");
         }
 
-        return result;
+        String s = new String(result);
+
+        return s;
     }
 }
