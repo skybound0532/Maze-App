@@ -5,6 +5,10 @@ import java.util.ArrayList;
 public class Maze
 {
     private Square[][] maze;
+    private int numRows;
+    private int numCols;
+    private Square start;
+    private Square finish;
     
     public Maze()
     {
@@ -17,18 +21,31 @@ public class Maze
         
         try (Scanner in = new Scanner(new File(fileName)))
         {
-            int numRows = in.nextInt();
-            int numCols = in.nextInt();
+            this.numRows = in.nextInt();
+            this.numCols = in.nextInt();
 
             in.nextLine();
 
             this.maze = new Square[numRows][numCols];
 
+            int type;
+
             for(int row = 0; row < numRows; row++)
             {
                 for(int col = 0; col < numCols; col++)
                 {
-                    maze[row][col] = new Square(row, col, in.nextInt());
+                    type = in.nextInt();
+
+                    maze[row][col] = new Square(row, col, type);
+
+                    if(type == 2)
+                    {
+                        this.start = maze[row][col];
+                    }
+                    else if(type == 3)
+                    {
+                        this.finish = maze[row][col];
+                    }
                 }
                 
                 in.nextLine();
@@ -66,7 +83,15 @@ public class Maze
         }
         if(row < maze.length - 1)
         {
-
+            results.add(maze[row + 1][col]);
+        }
+        if(col > 0)
+        {
+            results.add(maze[row][col - 1]);
+        }
+        if(col < maze[0].length - 1)
+        {
+            results.add(maze[row][col + 1]);
         }
 
         return results;
@@ -74,21 +99,73 @@ public class Maze
 
     public Square getStart()
     {
-        return null;
+        /*
+        Square start = null;
+
+        for(int row = 0; row < numRows; row++)
+        {
+            for(int col = 0; col < numCols; col++)
+            {
+                if(maze[row][col].getType() == 2);
+                {
+                    start = maze[row][col];
+                }
+            }
+        }
+        */
+
+        return start;
     }
 
-    public Square getEnd()
+    public Square getFinish()
     {
-        return null;
+        /*
+        Square finish = null;
+
+        for(int row = 0; row < numRows; row++)
+        {
+            for(int col = 0; col < numCols; col++)
+            {
+                if(maze[row][col].getType() == 3);
+                {
+                    finish = maze[row][col];
+                }
+            }
+        }
+        */
+        
+        return finish;
     }
 
     public void reset()
     {
-
+        for(int row = 0; row < numRows; row++)
+        {
+            for(int col = 0; col < numCols; col++)
+            {
+                maze[row][col].reset();
+            }
+        }
     }
 
     public String toString()
     {
-        return null;
+        // String result = null;
+        
+        StringBuilder result = new StringBuilder();
+        
+        for(int row = 0; row < numRows; row++)
+        {
+            for(int col = 0; col < numCols; col++)
+            {
+                result.append(maze[row][col] + " ");
+            }
+
+            result.append("\n");
+        }
+
+        String s = new String(result);
+
+        return s;
     }
 }
