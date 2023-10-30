@@ -7,6 +7,8 @@ public class Maze
     private Square[][] maze;
     private int numRows;
     private int numCols;
+    private Square start;
+    private Square finish;
     
     public Maze()
     {
@@ -26,11 +28,24 @@ public class Maze
 
             this.maze = new Square[numRows][numCols];
 
+            int type;
+
             for(int row = 0; row < numRows; row++)
             {
                 for(int col = 0; col < numCols; col++)
                 {
-                    maze[row][col] = new Square(row, col, in.nextInt());
+                    type = in.nextInt();
+
+                    maze[row][col] = new Square(row, col, type);
+
+                    if(type == 2)
+                    {
+                        this.start = maze[row][col];
+                    }
+                    else if(type == 3)
+                    {
+                        this.finish = maze[row][col];
+                    }
                 }
                 
                 in.nextLine();
@@ -84,6 +99,7 @@ public class Maze
 
     public Square getStart()
     {
+        /*
         Square start = null;
 
         for(int row = 0; row < numRows; row++)
@@ -96,13 +112,15 @@ public class Maze
                 }
             }
         }
-        
+        */
+
         return start;
     }
 
     public Square getFinish()
     {
-        Square end = null;
+        /*
+        Square finish = null;
 
         for(int row = 0; row < numRows; row++)
         {
@@ -110,12 +128,13 @@ public class Maze
             {
                 if(maze[row][col].getType() == 3);
                 {
-                    end = maze[row][col];
+                    finish = maze[row][col];
                 }
             }
         }
+        */
         
-        return end;
+        return finish;
     }
 
     public void reset()
