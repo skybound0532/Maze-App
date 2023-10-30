@@ -100,7 +100,7 @@ public class Maze
         return start;
     }
 
-    public Square getEnd()
+    public Square getFinish()
     {
         Square end = null;
 
