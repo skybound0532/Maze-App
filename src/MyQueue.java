@@ -55,7 +55,7 @@ public class MyQueue<T> implements QueueADT<T>
 
         size--;
 
-        return = element.data;
+        return element.data;
     }
 
     /**
@@ -70,7 +70,7 @@ public class MyQueue<T> implements QueueADT<T>
             throw new NoSuchElementException();
         }
 
-        return = first.data;
+        return first.data;
     }
 
     /**
