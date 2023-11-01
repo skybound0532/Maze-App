@@ -1,6 +1,4 @@
-import java.util.LinkedList;
 import java.util.NoSuchElementException;
-import java.util.Queue;
 
 public class MyQueue<T> implements QueueADT<T>
 {

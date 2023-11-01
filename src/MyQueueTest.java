@@ -10,6 +10,12 @@ public class MyQueueTest
         q.enqueue("smith");
         q.enqueue("will");
 
-        System.out.println(q);
+        System.out.println(q.size());
+        System.out.println(q.front());
+        
+        while(!q.isEmpty())
+        {
+            System.out.println(q.dequeue());
+        }
     }
 }
