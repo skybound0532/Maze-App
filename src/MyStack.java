@@ -5,7 +5,7 @@ public class MyStack<T> implements StackADT<T>
 {
     ArrayList<T> stack;
     
-    public MyStack<>()
+    public MyStack()
     {
         stack = new ArrayList<>();
     }
@@ -32,7 +32,7 @@ public class MyStack<T> implements StackADT<T>
         }
         else 
         {
-            return stack.remove(stack.size());
+            return stack.remove(stack.size() - 1);
         }
     }
 
@@ -49,8 +49,10 @@ public class MyStack<T> implements StackADT<T>
         }
         else
         {
-            return stack.get(stack.size());
+            return stack.get(stack.size() - 1);
         }
+    }
+
     /**
      * Find how many items are in the stack
      * @return the number of items in the stack
