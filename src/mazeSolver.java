@@ -1,4 +1,5 @@
-
+import java.util.ArrayList;
+import java.util.Stack;
 
 public abstract class MazeSolver
 {
@@ -12,34 +13,78 @@ public abstract class MazeSolver
 
     private Maze maze;
     private String solution;
-    private boolean solved;
 
     public MazeSolver(Maze maze)
     {
         this.maze = maze;
-        solved = false;
-        makeEmpty();
+        this.makeEmpty();
+        this.add(maze.getStart());
     }
 
     public boolean isSolved()
     {
-        return this.isEmpty() || solved;
+        return this.isEmpty() || solution != null;
     }
     
     public String getPath()
     {
+        if(solution == null)
+        {
+            return "No solution found.";
+        }
+        
         return solution;
     }
 
     public Square step()
     {
-        ArrayList<Square> toCheck;
-        
-        if(!this.isSolved())
+        // ArrayList<Square> toCheck;
+        Square current = null;
+        ArrayList<Square> neighbors;
+
+        if(!this.isEmpty())
         {
-            toCheck = this.next().getNeighbors();
-            while
+            current = this.next();
+            
+            if(current.getType() == 3)
+            {
+                Stack<Square> path = new Stack<>();
+                Square iterator = current;
+                
+                while(iterator.getPrevious().getType() != 2)
+                {
+                    path.push(iterator.getPrevious());
+                    iterator = iterator.getPrevious();
+                }
+
+                StringBuilder sb = new StringBuilder();
+
+                while(!path.isEmpty())
+                {
+                    sb.append(path.pop());
+                }
+
+                solution = new String(sb);
+
+                return current;
+            }
+
+            neighbors = maze.getNeighbors(current);
+
+            for(Square s : neighbors)
+            {
+                if(s.getType() == 0)
+                {
+                    s.setPrevious(current);
+                    s.setType(4);
+                    this.add(s);
+                }
+            }
+
+            current.setType(5);
         }
+        
+        return current;
     }
 
     public void solve()

@@ -43,6 +43,11 @@ public class Square
         return type;
     }
 
+    public void setType(int type)
+    {
+        this.type = type;
+    }
+
     public void reset()
     {
         if(this.type > 3)
@@ -53,6 +58,7 @@ public class Square
 
     public Square getPrevious()
     {
+        
         return previous;
     }
 
