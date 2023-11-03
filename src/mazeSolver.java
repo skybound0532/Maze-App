@@ -68,6 +68,7 @@ public abstract class MazeSolver
                 }
 
                 solution = new String(sb);
+                // System.out.println(solution);
 
                 return current;
             }
