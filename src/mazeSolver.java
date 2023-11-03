@@ -58,10 +58,13 @@ public abstract class MazeSolver
                 }
 
                 StringBuilder sb = new StringBuilder();
+                Square temp;
 
                 while(!path.isEmpty())
                 {
-                    sb.append(path.pop());
+                    temp = path.pop();
+
+                    sb.append("[" + temp.getRow() + "," + temp.getCol() + "]");
                 }
 
                 solution = new String(sb);
