@@ -13,12 +13,14 @@ public abstract class MazeSolver
 
     private Maze maze;
     private String solution;
+    // private boolean solved;
 
     public MazeSolver(Maze maze)
     {
         this.maze = maze;
         this.makeEmpty();
         this.add(maze.getStart());
+        // solved = false;
     }
 
     public boolean isSolved()
@@ -32,6 +34,7 @@ public abstract class MazeSolver
         {
             return "No solution found.";
         }
+        
         
         return solution;
     }
@@ -63,12 +66,17 @@ public abstract class MazeSolver
                 while(!path.isEmpty())
                 {
                     temp = path.pop();
+                    temp.setType(6);
+
+                    // solution += "[" + temp.getRow() + "," + temp.getCol() + "]";
 
                     sb.append("[" + temp.getRow() + "," + temp.getCol() + "]");
                 }
 
                 solution = new String(sb);
                 // System.out.println(solution);
+                // this.solved = true;
+                // this.maze.reset();
 
                 return current;
             }
@@ -83,9 +91,18 @@ public abstract class MazeSolver
                     s.setType(4);
                     this.add(s);
                 }
+                
+                if(s.getType() == 3)
+                {
+                    s.setPrevious(current);
+                    this.add(s);
+                }
             }
 
-            current.setType(5);
+            if(current.getType() == 4)
+            {
+                current.setType(5);
+            }
         }
         
         return current;
@@ -97,5 +114,7 @@ public abstract class MazeSolver
         {
             step();
         }
+
+        this.maze.reset();
     }
 }
