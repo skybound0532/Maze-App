@@ -17,7 +17,8 @@ public class Maze
 
     boolean loadMaze(String fname)
     {
-        String fileName = "src/" + fname;
+        // "src/" + 
+        String fileName = fname;
         
         try (Scanner in = new Scanner(new File(fileName)))
         {
